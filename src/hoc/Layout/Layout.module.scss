@@ -1,15 +1,16 @@
 .Layout {
-  padding: 0 20px;
-
-  background: #669eff;
-
-  box-shadow: 1px 1px 5px 1px rgba(black, 0.3);
-  overflow: hidden;
+  min-height: 100vh;
 
   .Header {
     height: 60px;
 
     display: flex;
+    padding: 0 20px;
+
+    background: #669eff;
+
+    box-shadow: 1px 1px 5px 1px rgba(black, 0.3);
+    overflow: hidden;
 
     .Container {
       width: 100%;
@@ -31,5 +32,11 @@
         display: flex;
       }
     }
+  }
+
+  .Content {
+    display: flex;
+
+    padding: 20px 20px;
   }
 }
