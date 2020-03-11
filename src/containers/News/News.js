@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./News.module.scss";
 
-import Article from "../../Article/Article";
+import Article from "../../components/Article/Article";
 
 const News = () => {
   return (
