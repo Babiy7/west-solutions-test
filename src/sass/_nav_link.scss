@@ -1,0 +1,28 @@
+@import "../sass/vars";
+@import "../sass/functions";
+
+%nav_link {
+  position: relative;
+
+  margin-left: 38px;
+
+  color: white;
+
+  font-size: calcFluidFontSize(12, 15);
+  text-decoration: none;
+
+  &:before {
+    content: "";
+
+    width: 0%;
+    height: 3px;
+
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+
+    background: #9fe8fc;
+
+    transition: all 0.2s linear;
+  }
+}

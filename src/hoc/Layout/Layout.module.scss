@@ -1,12 +1,15 @@
 .Layout {
+  padding: 0 20px;
+
+  background: #669eff;
+
+  box-shadow: 1px 1px 5px 1px rgba(black, 0.3);
+  overflow: hidden;
+
   .Header {
     height: 60px;
 
     display: flex;
-
-    background: #669eff;
-
-    box-shadow: 1px 1px 5px 1px rgba(black, 0.3);
 
     .Container {
       width: 100%;
@@ -15,12 +18,17 @@
 
       display: flex;
       align-items: center;
+      justify-content: space-between;
       margin: auto;
 
       .Logo {
         color: white;
 
         font-size: 20px;
+      }
+
+      .Nav {
+        display: flex;
       }
     }
   }
