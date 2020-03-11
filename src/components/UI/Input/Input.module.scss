@@ -1,0 +1,37 @@
+@import "../../../sass/functions";
+
+.InputElement {
+  width: 100%;
+
+  padding: 0.6em 1em;
+  margin: 0px auto;
+  border: #ccc solid 1px;
+  outline: none;
+  border-radius: 35px;
+
+  font-size: calcFluidFontSize(15, 17);
+
+  box-sizing: border-box;
+
+  &:hover,
+  &:focus {
+    border: #73c1ff solid 1px;
+
+    background: #d4ecff;
+  }
+}
+
+.Invalid {
+  border: #ff6161 solid 1px;
+
+  color: #ffe6e6;
+  background: #ff9191;
+
+  &:hover,
+  &:focus {
+    border: #ff6161 solid 1px;
+
+    color: #ffe6e6;
+    background: #ff9191;
+  }
+}
