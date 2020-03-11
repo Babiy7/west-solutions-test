@@ -1,30 +1,24 @@
-.Input {
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
-  padding: 0 10px;
-
-  box-sizing: border-box;
-}
-
-.Label {
-  margin: 0px 0px 10px 15px;
-
-  text-align: left;
-}
+@import "../../../sass/functions";
 
 .InputElement {
   width: 100%;
 
-  padding: 10px 15px;
+  padding: 0.6em 1em;
   margin: 0px auto;
   border: #ccc solid 1px;
   outline: none;
   border-radius: 35px;
 
+  font-size: calcFluidFontSize(15, 17);
+
   box-sizing: border-box;
+
+  &:hover,
+  &:focus {
+    border: #73c1ff solid 1px;
+
+    background: #d4ecff;
+  }
 }
 
 .Invalid {
@@ -32,19 +26,12 @@
 
   color: #ffe6e6;
   background: #ff9191;
-}
 
-.Invalid:hover,
-.Invalid:focus {
-  border: #ff6161 solid 1px;
+  &:hover,
+  &:focus {
+    border: #ff6161 solid 1px;
 
-  color: #ffe6e6;
-  background: #ff9191;
-}
-
-input:focus,
-input:hover {
-  border: #73c1ff solid 1px;
-
-  background: #d4ecff;
+    color: #ffe6e6;
+    background: #ff9191;
+  }
 }
