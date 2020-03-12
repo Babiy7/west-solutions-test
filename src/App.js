@@ -2,6 +2,7 @@ import React from "react";
 import "./App.module.scss";
 
 import { Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
 
 import Layout from "./hoc/Layout/Layout";
 import Home from "./components/Sections/Home/Home";
@@ -9,7 +10,8 @@ import Auth from "./containers/Auth/Auth";
 import News from "./containers/News/News";
 import Profile from "./containers/Profile/Profile";
 
-function App() {
+function App(props) {
+  console.log(props.isLogin);
   return (
     <div className="App">
       <Layout>
@@ -24,4 +26,10 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    isLogin: state.authStore.isLogin
+  };
+};
+
+export default connect(mapStateToProps)(App);
