@@ -1,4 +1,5 @@
 import * as ActionType from "../actionTypes";
+import { updatedObject } from "../../shared/utility";
 
 const initialState = {
   loading: false,
@@ -6,22 +7,23 @@ const initialState = {
   error: null
 };
 
-const loading = state => {
-  return { ...state, ...{ loading: true, error: null } };
-};
+const loading = state => updatedObject(state, { loading: true, error: null });
 
 const success = state => {
-  return { ...state, ...{ loading: false, isLogin: true, error: null } };
+  return { ...state, ...{ isLogin: true, loading: false, error: null } };
 };
 
 const fail = (state, error) => {
   return { ...state, ...{ error: error, loading: false } };
 };
 
+const logout = state => {
+  return { ...state, ...{ isLogin: false, loading: false, error: null } };
+};
+
 const auth = (state = initialState, { type, payload }) => {
   switch (type) {
     case ActionType.AUTH_LOADING:
-      console.log("loading");
       return loading(state);
 
     case ActionType.AUTH_SUCCESS:
@@ -30,11 +32,8 @@ const auth = (state = initialState, { type, payload }) => {
     case ActionType.AUTH_FAIL:
       return fail(state, payload);
 
-    case ActionType.AUTH_USER_ISLOGIN:
-      return { ...state, ...payload };
-
     case ActionType.AUTH_LOGOUT:
-      return { ...state, ...payload };
+      return logout(state);
 
     default:
       return state;

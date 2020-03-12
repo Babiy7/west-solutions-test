@@ -52,6 +52,10 @@ class Auth extends React.Component {
   };
 
   render() {
+    if (this.props.isLogin) {
+      return <Redirect to="/profile" />;
+    }
+
     let controls = [];
 
     for (let elementType in this.state.controls) {
@@ -84,10 +88,6 @@ class Auth extends React.Component {
 
     if (this.props.loading) {
       content = <Spinner />;
-    }
-
-    if (this.props.isLogin) {
-      return <Redirect to="/profile" />;
     }
 
     return <div className={classes.Auth}>{content}</div>;

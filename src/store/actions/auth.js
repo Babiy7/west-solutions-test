@@ -23,3 +23,14 @@ export const login = data => {
     }, 2000);
   };
 };
+
+export const logout = () => {
+  return dispatch => {
+    dispatch(loading());
+
+    setTimeout(() => {
+      localStorage.removeItem("isLogin");
+      dispatch({ type: ActionType.AUTH_LOGOUT });
+    }, 2000);
+  };
+};

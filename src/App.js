@@ -11,7 +11,6 @@ import News from "./containers/News/News";
 import Profile from "./containers/Profile/Profile";
 
 function App(props) {
-  console.log(props.isLogin);
   return (
     <div className="App">
       <Layout>
