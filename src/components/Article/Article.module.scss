@@ -1,0 +1,64 @@
+@import "../../sass/functions";
+@import "../../sass/vars";
+
+.Article {
+  height: 100%;
+
+  position: relative;
+
+  border: rgba($blue, 0.3) solid;
+  border-radius: 25px;
+
+  text-align: center;
+
+  overflow: hidden;
+  transition: all 0.2s linear;
+
+  &:hover {
+    box-shadow: 1px 1px 20px 0px rgba(black, 0.2);
+  }
+
+  .Header {
+    height: 50%;
+
+    .Image {
+      width: 100%;
+      height: 80%;
+    }
+
+    .Title {
+      font-size: calcFluidFontSize(15, 20);
+    }
+  }
+
+  .Content {
+    margin-top: 20px;
+    padding: 10px;
+
+    font-size: calcFluidFontSize(12, 16);
+  }
+
+  .Footer {
+    width: 100%;
+
+    position: absolute;
+    bottom: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+
+    box-sizing: border-box;
+
+    .Author {
+      font-size: calcFluidFontSize(12, 18);
+    }
+
+    .Data {
+      color: rgba(black, 0.5);
+
+      font-size: 12px;
+    }
+  }
+}

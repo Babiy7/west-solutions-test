@@ -1,0 +1,56 @@
+@import "../../sass/vars";
+
+.Profile {
+  width: 100%;
+  max-width: 1000px;
+  height: 500px;
+
+  margin: auto;
+  padding: 20px;
+
+  box-shadow: 1px 1px 20px 0px rgba(black, 0.2);
+  box-sizing: border-box;
+
+  .UserContainer {
+    position: relative;
+
+    display: flex;
+
+    .Image {
+      width: 110px;
+      height: 110px;
+
+      display: flex;
+      margin-right: 30px;
+      border-radius: 50%;
+
+      background: $blue;
+
+      .Letter {
+        margin: auto;
+
+        color: white;
+
+        font-size: 50px;
+      }
+    }
+
+    .ButtonContainer {
+      width: 130px;
+
+      position: absolute;
+      bottom: 0;
+      left: 140px;
+    }
+  }
+
+  .Content {
+    margin: 0;
+    padding: 0;
+    padding-top: 50px;
+
+    color: rgba(#000000, 0.6);
+
+    text-align: center;
+  }
+}
