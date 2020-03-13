@@ -1,9 +1,24 @@
 import * as ActionType from "../actionTypes";
 import { isValid } from "../../shared/utility";
 
-const loading = () => {
-  return { type: ActionType.AUTH_LOADING };
-};
+const loading = () => ({ type: ActionType.AUTH_LOADING });
+
+const success = () => ({ type: ActionType.AUTH_SUCCESS });
+
+const fail = () => ({
+  type: ActionType.AUTH_FAIL,
+  payload: "Your data is incorect"
+});
+
+const authLogout = isLogin => ({
+  type: ActionType.AUTH_LOGOUT,
+  payload: isLogin
+});
+
+const authUserIslogin = isLogin => ({
+  type: ActionType.AUTH_USER_ISLOGIN,
+  payload: isLogin
+});
 
 export const login = data => {
   return dispatch => {
@@ -13,12 +28,9 @@ export const login = data => {
       if (isValid(data)) {
         localStorage.setItem("isLogin", true);
 
-        dispatch({ type: ActionType.AUTH_SUCCESS });
+        dispatch(success());
       } else {
-        dispatch({
-          type: ActionType.AUTH_FAIL,
-          payload: "Your data is incorect"
-        });
+        dispatch(fail());
       }
     }, 2000);
   };
@@ -29,8 +41,23 @@ export const logout = () => {
     dispatch(loading());
 
     setTimeout(() => {
-      localStorage.removeItem("isLogin");
-      dispatch({ type: ActionType.AUTH_LOGOUT });
+      localStorage.setItem("isLogin", false);
+
+      const isLogin = localStorage.getItem("isLogin");
+      const boolValue = isLogin === "false";
+
+      dispatch(authLogout(!boolValue));
     }, 2000);
+  };
+};
+
+export const isLogin = () => {
+  return dispatch => {
+    const isLogin = localStorage.getItem("isLogin");
+    const boolValue = isLogin === "true";
+
+    if (boolValue) {
+      dispatch(authUserIslogin(boolValue));
+    }
   };
 };

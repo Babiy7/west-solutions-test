@@ -70,9 +70,8 @@ class Auth extends React.Component {
         <h2 className={classes.Title}>Login</h2>
         <form className={classes.Form}>
           {controls.map(element => (
-            <div className={classes.InputContainer}>
+            <div key={element.id} className={classes.InputContainer}>
               <Input
-                key={element.id}
                 changed={this.changeHandler}
                 configuration={element.configuration}
               />

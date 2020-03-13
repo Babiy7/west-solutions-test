@@ -1,6 +1,6 @@
 export const updatedObject = (state, newValues) => ({ ...state, ...newValues });
 
-export function isValid(data) {
+export const isValid = data => {
   if (data.username !== "username") {
     return false;
   }
@@ -10,4 +10,4 @@ export function isValid(data) {
   }
 
   return true;
-}
+};

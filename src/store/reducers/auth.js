@@ -9,17 +9,21 @@ const initialState = {
 
 const loading = state => updatedObject(state, { loading: true, error: null });
 
-const success = state => {
-  return { ...state, ...{ isLogin: true, loading: false, error: null } };
-};
+const success = state =>
+  updatedObject(state, { isLogin: true, loading: false, error: null });
 
-const fail = (state, error) => {
-  return { ...state, ...{ error: error, loading: false } };
-};
+const fail = (state, error) =>
+  updatedObject(state, { error: error, loading: false });
 
-const logout = state => {
-  return { ...state, ...{ isLogin: false, loading: false, error: null } };
-};
+const logout = (state, isLogin) =>
+  updatedObject(state, { isLogin: isLogin, loading: false, error: null });
+
+const isLogin = (state, isLogin) =>
+  updatedObject(state, {
+    isLogin: isLogin,
+    loading: false,
+    error: null
+  });
 
 const auth = (state = initialState, { type, payload }) => {
   switch (type) {
@@ -33,7 +37,10 @@ const auth = (state = initialState, { type, payload }) => {
       return fail(state, payload);
 
     case ActionType.AUTH_LOGOUT:
-      return logout(state);
+      return logout(state, payload);
+
+    case ActionType.AUTH_USER_ISLOGIN:
+      return isLogin(state, payload);
 
     default:
       return state;
