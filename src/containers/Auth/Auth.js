@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import classes from "./Auth.module.scss";
+
+import { connect } from "react-redux";
+import { login } from "../../store/actions/auth";
+import { Redirect } from "react-router-dom";
 
 import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Button/Button";
+import Spinner from "../../components/UI/Spinner/Spinner";
 
-const Auth = () => {
-  const [state, setState] = useState({
+class Auth extends React.Component {
+  state = {
+    username: "",
+    password: "",
+
     controls: {
       username: {
         elementType: "input",
         elementConfig: {
+          name: "username",
           type: "text",
           placeholder: "Type your username"
         },
@@ -18,39 +27,98 @@ const Auth = () => {
       password: {
         elementType: "input",
         elementConfig: {
+          name: "password",
           type: "password",
           placeholder: "Type your password"
         },
         value: ""
       }
     }
-  });
+  };
 
-  let controls = [];
+  changeHandler = e => {
+    const name = e.target.name;
 
-  for (let elementType in state.controls) {
-    controls.push({
-      id: elementType,
-      configuration: state.controls[elementType]
-    });
-  }
+    this.setState({ [name]: e.target.value });
+  };
 
-  return (
-    <div className={classes.Auth}>
-      <h2 className={classes.Title}>Login</h2>
-      <form className={classes.Form}>
-        {controls.map(element => (
-          <div className={classes.InputContainer}>
-            <Input key={element.id} configuration={element.configuration} />
+  loginHandler = e => {
+    e.preventDefault();
+
+    const state = this.state;
+
+    if (state.username !== "" && state.password !== "") {
+      this.props.login({
+        username: state.username,
+        password: state.password
+      });
+    }
+  };
+
+  render() {
+    if (this.props.isLogin) {
+      return <Redirect to="/profile" />;
+    }
+
+    let controls = [];
+    const error = this.props.error;
+
+    for (let elementType in this.state.controls) {
+      controls.push({
+        id: elementType,
+        configuration: this.state.controls[elementType]
+      });
+    }
+
+    let content = (
+      <>
+        <h2 className={classes.Title}>Login</h2>
+        {error ? (
+          <div className={classes.ErrorContainer}>
+            <h2 className={classes.ErrorMessage}>{error}</h2>
           </div>
-        ))}
+        ) : (
+          ""
+        )}
+        <form className={classes.Form}>
+          {controls.map(element => (
+            <div key={element.id} className={classes.InputContainer}>
+              <Input
+                changed={this.changeHandler}
+                configuration={element.configuration}
+              />
+            </div>
+          ))}
 
-        <div className={classes.ButtonContainer}>
-          <Button>Login</Button>
-        </div>
-      </form>
-    </div>
-  );
+          <div className={classes.ButtonContainer}>
+            <Button clicked={this.loginHandler}>Login</Button>
+          </div>
+        </form>
+      </>
+    );
+
+    if (this.props.loading) {
+      content = <Spinner />;
+    }
+
+    return <div className={classes.Auth}>{content}</div>;
+  }
+}
+
+const mapStateToProps = state => {
+  const store = state.authStore;
+
+  return {
+    loading: store.loading,
+    error: store.error,
+    isLogin: store.isLogin
+  };
 };
 
-export default Auth;
+const mapDispatchToProps = dispatch => {
+  return {
+    login: authData => dispatch(login(authData))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);

@@ -1,17 +1,27 @@
 import React from "react";
+
+import { connect } from "react-redux";
+
 import NavLink from "./NavLink/NavLink";
 
 const NavLinks = props => {
-  return [
-    { title: "Home", link: "/" },
-    { title: "Login", link: "/login" },
-    { title: "News", link: "/news" },
-    { title: "Profile", link: "/profile" }
-  ].map(navLink => (
-    <NavLink link={navLink.link} active={navLink.active}>
-      {navLink.title}
-    </NavLink>
-  ));
+  console.log("Navlinks rendering");
+  return (
+    <>
+      {[
+        { title: "Home", link: "/" },
+        { title: "News", link: "/news" },
+        { title: "Profile", link: "/profile" }
+      ].map((navLink, index) => (
+        <NavLink key={index} link={navLink.link}>
+          {navLink.title}
+        </NavLink>
+      ))}
+      {props.isLogin ? "" : <NavLink link="/login">Login</NavLink>}
+    </>
+  );
 };
 
-export default NavLinks;
+const mapStateToProps = state => ({ isLogin: state.authStore.isLogin });
+
+export default connect(mapStateToProps)(NavLinks);
