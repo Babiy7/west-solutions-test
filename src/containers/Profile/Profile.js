@@ -9,7 +9,7 @@ import Button from "../../components/UI/Button/Button";
 import Spinner from "../../components/UI/Spinner/Spinner";
 
 const Profile = props => {
-  console.log(props.isLogin);
+  console.log("Profile rendering");
 
   if (!props.isLogin) {
     return <Redirect to="/login" />;

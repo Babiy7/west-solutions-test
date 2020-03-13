@@ -56,6 +56,8 @@ class Auth extends React.Component {
   };
 
   render() {
+    console.log("Auth rendering");
+
     if (this.props.isLogin) {
       return <Redirect to="/profile" />;
     }

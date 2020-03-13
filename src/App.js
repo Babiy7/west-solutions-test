@@ -12,11 +12,11 @@ import News from "./containers/News/News";
 import Profile from "./containers/Profile/Profile";
 
 function App(props) {
+  console.log("App rendering");
+
   useEffect(() => {
     props.isUserLogin();
   });
-
-  // console.log("isLogin: " + props.isLogin);
 
   return (
     <div className="App">
@@ -32,16 +32,10 @@ function App(props) {
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    isLogin: state.authStore.isLogin
-  };
-};
-
 const mapDispatchToProps = dispatch => {
   return {
     isUserLogin: () => dispatch(isLogin())
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);
