@@ -1,4 +1,5 @@
 @import "../../../sass/functions";
+@import "../../../sass/vars";
 
 .InputElement {
   width: 100%;
@@ -18,20 +19,5 @@
     border: #73c1ff solid 1px;
 
     background: #d4ecff;
-  }
-}
-
-.Invalid {
-  border: #ff6161 solid 1px;
-
-  color: #ffe6e6;
-  background: #ff9191;
-
-  &:hover,
-  &:focus {
-    border: #ff6161 solid 1px;
-
-    color: #ffe6e6;
-    background: #ff9191;
   }
 }

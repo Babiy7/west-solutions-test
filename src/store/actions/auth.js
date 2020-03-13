@@ -7,7 +7,7 @@ const success = () => ({ type: ActionType.AUTH_SUCCESS });
 
 const fail = () => ({
   type: ActionType.AUTH_FAIL,
-  payload: "Your data is incorect"
+  payload: "The username or password you entered is incorrect!"
 });
 
 const authLogout = isLogin => ({
@@ -32,7 +32,7 @@ export const login = data => {
       } else {
         dispatch(fail());
       }
-    }, 2000);
+    }, 1000);
   };
 };
 
@@ -47,7 +47,7 @@ export const logout = () => {
       const boolValue = isLogin === "false";
 
       dispatch(authLogout(!boolValue));
-    }, 2000);
+    }, 1000);
   };
 };
 

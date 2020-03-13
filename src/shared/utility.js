@@ -5,7 +5,7 @@ export const isValid = data => {
     return false;
   }
 
-  if (data.password !== "1234567") {
+  if (data.password !== "12345") {
     return false;
   }
 

@@ -45,10 +45,14 @@ class Auth extends React.Component {
   loginHandler = e => {
     e.preventDefault();
 
-    this.props.login({
-      username: this.state.username,
-      password: this.state.password
-    });
+    const state = this.state;
+
+    if (state.username !== "" && state.password !== "") {
+      this.props.login({
+        username: state.username,
+        password: state.password
+      });
+    }
   };
 
   render() {
@@ -57,6 +61,7 @@ class Auth extends React.Component {
     }
 
     let controls = [];
+    const error = this.props.error;
 
     for (let elementType in this.state.controls) {
       controls.push({
@@ -68,6 +73,13 @@ class Auth extends React.Component {
     let content = (
       <>
         <h2 className={classes.Title}>Login</h2>
+        {error ? (
+          <div className={classes.ErrorContainer}>
+            <h2 className={classes.ErrorMessage}>{error}</h2>
+          </div>
+        ) : (
+          ""
+        )}
         <form className={classes.Form}>
           {controls.map(element => (
             <div key={element.id} className={classes.InputContainer}>
