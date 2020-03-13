@@ -1,20 +1,23 @@
-import React, { useEffect, memo } from "react";
+import React, { useEffect } from "react";
 import classes from "./News.module.scss";
 
 import { connect } from "react-redux";
 import { getNews } from "../../store/actions/news";
 
 import Article from "../../components/Article/Article";
+import Spinner from "../../components/UI/Spinner/Spinner";
 
 const News = props => {
-  console.log("News rendering");
   let content = null;
 
   useEffect(() => {
     props.getNews();
+    // eslint-disable-next-line
   }, []);
 
-  console.log(props.news);
+  if (props.loading) {
+    content = <Spinner />;
+  }
 
   if (props.news) {
     content = props.news.map((article, index) => (
