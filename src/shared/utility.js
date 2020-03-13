@@ -11,3 +11,13 @@ export const isValid = data => {
 
   return true;
 };
+
+export const sliceString = (string, numOfChars) => {
+  if (typeof string === "string") {
+    if (string.length > numOfChars) {
+      return (string = string.slice(0, numOfChars) + "...");
+    }
+  }
+
+  return string;
+};
