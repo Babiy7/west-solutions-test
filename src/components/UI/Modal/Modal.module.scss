@@ -1,5 +1,5 @@
 .Modal {
-  width: 70%;
+  width: 500px;
 
   position: fixed;
   left: 50%;
@@ -8,6 +8,8 @@
   padding: 16px;
 
   background-color: white;
+
+  text-align: center;
 
   box-shadow: 1px 1px 1px black;
   transition: all 0.3s ease-out;

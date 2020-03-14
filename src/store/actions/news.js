@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../axios/axios";
 import * as ActionType from "../actionTypes";
 
 const loading = () => ({ type: ActionType.NEWS_LOADING });
@@ -14,9 +14,7 @@ export const getNews = () => {
   return dispatch => {
     dispatch(loading());
 
-    const data = axios.get(
-      "http://newsapi.org/v2/everything?q=bitcoin&from=2020-02-13&sortBy=publishedAt&apiKey=a2141125460b419eb95edb2eedcd474d"
-    );
+    const data = axios.get();
 
     data
       .then(response => response.data.articles)
