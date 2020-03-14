@@ -3,6 +3,7 @@ import classes from "./News.module.scss";
 
 import { connect } from "react-redux";
 import { getNews } from "../../store/actions/news";
+import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 
 import Article from "../../components/Article/Article";
 import Spinner from "../../components/UI/Spinner/Spinner";
@@ -54,4 +55,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(News);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withErrorHandler(News));
