@@ -1,0 +1,18 @@
+@import "../../../../sass/vars";
+@import "../../../../sass/nav_link";
+
+.Link {
+  @extend %nav_link;
+
+  &:hover::before {
+    width: 100%;
+  }
+}
+
+.ActiveLink {
+  @extend %nav_link;
+
+  &:before {
+    width: 100%;
+  }
+}
