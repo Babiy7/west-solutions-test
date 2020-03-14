@@ -15,12 +15,15 @@ export const getNews = () => {
     dispatch(loading());
 
     const data = axios.get(
-      "http://newsapi.org/v2/everything?q=bitcoin&from=2020-02-13&sortBy=publishedAt&apiKey=a2141125460b419eb95edb2eedcd474d"
+      "http://newsapi.org/v2/everything?q=bitcoin&from=2020-02-14&sortBy=publishedAt&apiKey=a2141125460b419eb95edb2eedcd474d"
     );
 
     data
       .then(response => response.data.articles)
-      .then(news => dispatch(success(news)))
+      .then(news => {
+        console.log(news);
+        dispatch(success(news));
+      })
       .catch(e => dispatch(fail(e)));
   };
 };
