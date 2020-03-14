@@ -14,9 +14,8 @@ export const getNews = () => {
   return dispatch => {
     dispatch(loading());
 
-    const data = axios.get();
-
-    data
+    axios
+      .get()
       .then(response => response.data.articles)
       .then(news => dispatch(success(news)))
       .catch(e => dispatch(fail(e)));

@@ -11,8 +11,6 @@ import Spinner from "../../components/UI/Spinner/Spinner";
 const News = props => {
   let content = null;
 
-  console.log(props.news);
-
   useEffect(() => {
     props.getNews();
     // eslint-disable-next-line
